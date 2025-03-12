@@ -1,6 +1,5 @@
 .env
 
 # c progrma
-c/a.out
 c/*
-c/*.0
+!c/*.c
