@@ -3,3 +3,4 @@
 # c progrma
 c/*
 !c/*.c
+!c/lib
