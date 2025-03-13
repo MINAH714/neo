@@ -1,8 +1,9 @@
 .env
 
 # c progrma
-c/*
-!c/*.c
-!c/lib
-!c/makefile
-c/makefile/*.o
+C/*
+C/makefile/test
+!c/**/*.c
+!c/**/*.h
+!c/**/*.a
+!c/**/Makefile*
