@@ -1,12 +1,17 @@
+# .env
 .env
 
-# c progrma
-C/*
-C/makefile/test
+# c program
+c/*
+c/*.o
 !c/**/*.c
 !c/**/*.h
 !c/**/*.a
 !c/**/Makefile*
 
-#Java
+# Java
 **/*.class
+
+# Scala
+scala/**/project
+scala/**/target
