@@ -10,7 +10,7 @@ db.ord.insert({
     order_filled:"y",
 })
 
-db.ord.update({ord_id:"2025-03026"},
+db.ord.update({ord_id:"2025-03-26"},
     {$set:{
         item_id:[{
             item_id:"1",
