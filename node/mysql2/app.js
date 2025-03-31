@@ -54,4 +54,4 @@ const db = async () => {
     }
 }
 
-db()
+db();

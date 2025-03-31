@@ -16,7 +16,7 @@ app.get('/Hello', (req, res) => {
 
 // select all rows from st_info table
 app.get('/select', async (req, res) => {
-    const [rows] = await pool.query('select * from st_info');
+    const [rows, fields] = await pool.query('select * from st_info');
     console.log(rows);
     // res.send(result);
     res.writeHead(200);
@@ -33,9 +33,9 @@ app.get('/select', async (req, res) => {
             <th>ST_ID</th>
             <th>NAME</th>
             <th>DEPT</th>
-        </tr>
+        </tr>   
         `;
-        for (var i = 0; i < rows.length; i++) {
+        for (var i=0; i<rows.length; i++) {
         template += `
         <tr>
             <th>${rows[i]['ST_ID']}</th>
@@ -48,30 +48,31 @@ app.get('/select', async (req, res) => {
     </table>
     </body>
     </html>
-    `; 
+    `;
     res.end(template);
 })
 
-
-// insert data into st_info table
+// insert data to st_info table
 app.get('/insert', async (req, res) => {
     const { st_id, name, dept } = req.query;
-    const [rows] = await pool.query("insert into st_info values (?, ?, ?)", [st_id, name, dept]);
+    const [rows] = await pool.query("insert into st_info values (?, ?, ?)",
+        [st_id, name, dept]);
     res.redirect('/select');
 })
 
-// update data into st_info table
+//update data to st_info table
 app.get('/update', async (req, res) => {
     const { st_id, name, dept } = req.query;
-    const [rows] = await pool.query("update st_info set NAME = ?, DEPT = ?  where ST_ID = ?",
+    const [rows] = await pool.query("update st_info set NAME = ?, DEPT = ? where ST_ID = ?",
         [name, dept, st_id]);
     res.redirect('/select');
 })
 
-// delete data into st_info table
+// delete data from st_info table
 app.get('/delete', async (req, res) => {
-    const { st_id } = req.query.st_id;
-    const [rows] = await pool.query("delete from st_info where ST_ID = ?", [st_id]);
+    const st_id= req.query.st_id;
+    const [rows] = await pool.query("delete from st_info where ST_ID = ?",
+        [st_id]);
     res.redirect('/select');
 })
 
