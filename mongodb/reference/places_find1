@@ -1,6 +1,6 @@
 use test
 
-var peopleDoc=db.people.findOne({name:"Erin"})
+var peopleDoc = db.people.findOne({name:"Erin"})
 peopleDoc.url
 var placeID = peopleDoc.places_id;
 var placeDoc = db.places.findOne({_id:placeID})

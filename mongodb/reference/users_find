@@ -4,7 +4,7 @@ var note=db.notes.findOne({"_id":20})
 note
 
 note.reference.forEach(function(ref) {
-    printjson(db[ref.$ref].findOne({"_id":ref.$id}))
+    printjson(db[ref.$ref].findOne({"_id": ref.$id}))
 })
 note.reference
 
