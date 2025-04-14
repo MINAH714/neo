@@ -1,44 +1,28 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# ✅ 폰트 설정 (VS Code나 로컬에 NanumBarunGothic 설치되어 있어야 함)
+# 📌 한글 폰트 설정 (설치된 경우만)
 plt.rcParams['font.family'] = 'NanumBarunGothic'
 
-# 1. CSV 불러오기
-filename = 'KOSIS_한국인_출국국가별_여행객수_2022_2024.csv'
-df = pd.read_csv(filename)
+# 1. 파일 불러오기
+df = pd.read_csv("국가별_평균출국자수.csv", encoding="utf-8-sig")
 
-# 2. 국가별 총합 계산
-df_total = df.groupby('국가')['여행객수'].sum().reset_index()
+# 2. '기타' 국가 제거 (선택 사항)
+df = df[~df['국가'].str.contains("기타")]
 
-# 3. 상위/하위 10개국 추출
-top10 = df_total.sort_values(by='여행객수', ascending=False).head(10)
-bottom10 = df_total.sort_values(by='여행객수').head(10)
+# 3. 국가 이름 기준 정렬 (또는 평균 출국자 수 기준 정렬도 가능)
+df = df.sort_values(by='평균 출국자 수', ascending=False)
 
-# 4. 그래프 시각화
-plt.figure(figsize=(14, 6))
-
-# ▶ 상위 10개국
-plt.subplot(1, 2, 1)
-plt.bar(top10['국가'], top10['여행객수'], color='skyblue')
-plt.title("출국 여행객 수 상위 10개국 (2022~2024)")
+# 4. 전체 그래프 시각화
+plt.figure(figsize=(16, 8))
+plt.bar(df['국가'], df['평균 출국자 수'], color='mediumseagreen')
+plt.title("국가별 평균 출국자 수 (전체 비교)")
 plt.xlabel("국가")
-plt.ylabel("여행객 수")
-plt.xticks(rotation=45)
+plt.ylabel("평균 출국자 수")
+plt.xticks(rotation=75, ha='right')
 
-# ▶ 하위 10개국
-plt.subplot(1, 2, 2)
-plt.bar(bottom10['국가'], bottom10['여행객수'], color='salmon')
-plt.title("출국 여행객 수 하위 10개국 (2022~2024)")
-plt.xlabel("국가")
-plt.ylabel("여행객 수")
-plt.xticks(rotation=45)
-
-# 5. 그래프 저장
+# 5. 그래프 저장 및 출력
 plt.tight_layout()
-output_file = '출국여행객_상위하위10개국.png'
-plt.savefig(output_file, dpi=400, bbox_inches='tight')
-print(f"{output_file} 저장 완료!")
-
-# 6. 화면 출력
+plt.savefig("국가별_평균출국자수_전체그래프.png", dpi=400, bbox_inches='tight')
+print("✅ 전체 비교 그래프 저장 완료!")
 plt.show()
