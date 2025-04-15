@@ -1,8 +1,9 @@
+import time, datetime, ssl
 import pandas as pd
 import urllib.request
 
 from selenium import webdriver
-from  selenium.webdriver.common.by import By
+from selenium.webdriver.common.by import By
 
 from bs4 import BeautifulSoup
 
@@ -14,7 +15,7 @@ class ChickenStore():
         self.driver.execute_script(cmdJavaScript)
         wait = 5
         time.sleep(wait)
-        mypage = self.driver.page_spurce
+        mypage = self.driver.page_source
 
         return BeautifulSoup(mypage, 'html.parser')
     
@@ -23,7 +24,7 @@ class ChickenStore():
             return None
         else:
             return BeautifulSoup(self.soup, 'html.parser')
-        
+    
     def get_request_url(self):
         request = urllib.request.Request(self.url)
         try:
@@ -41,7 +42,7 @@ class ChickenStore():
             print(msg)
             return None
         
-    def save3Csv(self, result):
+    def save2Csv(self, result):
         data = pd.DataFrame(result, columns=self.mycolumns)
         data.to_csv(self.brandName + '.csv', encoding=self.myencoding, index=True)
 
@@ -55,11 +56,12 @@ class ChickenStore():
             self.mycolumns.append('phone')
         else:
             pass
-
+    
         if self.brandName != 'goobne':
             self.soup = self.get_request_url()
             self.driver = None
         else:
-            self.soup = Nonefilepath = '/root/chomedriver/chromedriver'
+            self.soup = None
+            filepath = '/root/chromedriver/chromedriver'
             self.driver = webdriver.Chrome(filepath)
             self.driver.get(self.url)
