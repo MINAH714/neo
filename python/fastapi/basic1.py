@@ -8,10 +8,9 @@ async def HealthCheck():
 
 @app.get('/hello')
 async def Hello():
-    return {"message": "Hello World!"}
+    return {"message": "Hello World"}
 
 @app.post('/random')
-
 @app.get('/random')
 async def Random(max=None):
     import random
@@ -20,5 +19,4 @@ async def Random(max=None):
         max = 10
     else:
         max = int(max)
-        console.log(max)
     return {"random number": random.randint(1, max)}
