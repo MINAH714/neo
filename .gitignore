@@ -39,3 +39,6 @@ oracle/**/node_modules
 oracle/**/package-lock.json
 
 projectTest/*
+
+project/**/node_modules
+project/**/package-lock.json
