@@ -688,3 +688,23 @@
     cursor: pointer;
   }
   
+
+  .noshow{
+    display: none;
+  }
+
+  .btn-search{
+    margin-top: 10px;
+    background-color: #a59ed3;
+    color:white
+  }
+
+  .btn-search:hover{
+    color: #a59ed3;
+    border:2px solid #a59ed3;  
+  }
+
+  .right-panel h2{
+    margin-top: 30px;
+    font-size: 25px;
+  }

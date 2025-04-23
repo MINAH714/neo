@@ -1,52 +1,127 @@
-
-
 function showPage(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById('flightSearchForm');
+document.getElementById("flightSearchForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
+    const originLeft =document.querySelector(".left-origin");
+    originLeft.classList.add("noshow")
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();  // 폼 제출 기본 동작 막기
+    const origin = document.getElementById("origin").value;
+    const destination = document.getElementById("destination").value;
+    const date = document.getElementById("date").value;
 
-        const origin = document.getElementById('origin').value;
-        const destination = document.getElementById('destination').value;
-        const date = document.getElementById('date').value;
+    const response = await fetch(`/api/flight_analysis?origin=${origin}&destination=${destination}&departureDate=${date}`);
+    const data = await response.json();
 
-        const flightResultDiv = document.getElementById('flightResult');
-        flightResultDiv.innerHTML = '<p>가격 분석 중...</p>';
+    const analysisText = data.analysis;
+    const prices = data.prices;
 
-        try {
-            const response = await fetch(`http://192.168.1.50:3000/api/total_final/flight_Prices?origin=${origin}&destination=${destination}&departureDate=${date}`);
-            const data = await response.json();
+    // 왼쪽 문구 숨기기 & 분석 결과 보이기
+    document.getElementById("flight-title").style.display = "none";
+    document.getElementById("flight-analysis-result").style.display = "block";
+    document.getElementById("flight-analysis-text").innerText = analysisText;
 
-            if (!data.Result) {
-                throw new Error(data.message || '데이터를 가져오는데 실패했습니다.');
-            }
-
-            const realTimePrice = data.real_price;
-            const oneYearAgoPrice = data.past_price_metrics["1년 전"]?.MEDIUM;
-            const twoYearsAgoPrice = data.past_price_metrics["2년 전"]?.MEDIUM;
-            const threeYearsAgoPrice = data.past_price_metrics["3년 전"]?.MEDIUM;
-            const analysis = data.analysis;
-
-            const resultHTML = `
-                <h3>가격 분석 결과</h3>
-                <ul>
-                    <li>실시간 가격: ${realTimePrice.toLocaleString()} KRW</li>
-                    <li>1년 전 가격: ${oneYearAgoPrice?.toLocaleString() ?? 'N/A'} KRW</li>
-                    <li>2년 전 가격: ${twoYearsAgoPrice?.toLocaleString() ?? 'N/A'} KRW</li>
-                    <li>3년 전 가격: ${threeYearsAgoPrice?.toLocaleString() ?? 'N/A'} KRW</li>
-                </ul>
-                <h4>분석</h4>
-                <p>${analysis}</p>
-            `;
-
-            flightResultDiv.innerHTML = resultHTML;
-        } catch (error) {
-            flightResultDiv.innerHTML = `<p>오류 발생: ${error.message}</p>`;
-        }
-    });
+    // 그래프 그리기
+    fetchFlightData(data);
 });
+
+function fetchFlightData(data) {
+        if (window.flightChart) {
+        window.flightChart.destroy();
+    }
+  
+    if (data.Result) {
+      const labels = Object.keys(data.simulated_past_prices); // ["1년 전", "2년 전", "3년 전"]
+      const pastPrices = Object.values(data.simulated_past_prices); // [113195.6, 146034.33, 187977.38]
+      const realPrice = data.real_price;
+      const avgPrice = data.average_simulated_price;
+  
+      const ctx = document.getElementById('flight-chart').getContext('2d');
+      window.flightChart=new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+                label: '현재 항공권 가격',
+                data: [realPrice, realPrice, realPrice],
+                type: 'line',
+                borderColor: 'rgb(249, 56, 39)',
+                borderWidth: 2,
+                fill: false,
+                pointRadius: 4,
+                tension: 0
+            },
+            {
+                label: '과거 평균 가격',
+                data: [avgPrice, avgPrice, avgPrice],
+                type: 'line',
+                borderColor: 'rgb(255, 169, 85)',
+                borderDash: [5, 5],
+                borderWidth: 2,
+                fill: false,
+                pointRadius: 0,
+                tension: 0
+            },
+            {
+                label: '과거 항공권 가격',
+                data: pastPrices,
+                backgroundColor: 'rgb(122, 198, 210)'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: '과거 3년간 항공권 가격 vs 현재 가격'
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              ticks: {
+                callback: value => value.toLocaleString() + '원'
+              }
+            }
+          }
+        }
+      });
+    } else {
+      console.error(result.message);
+    }
+  }
+  
+  
+
+// // ✨ Chart.js로 그래프 그리는 함수
+// function renderFlightChart(prices) {
+//     const ctx = document.getElementById('flight-chart').getContext('2d');
+
+//     // 기존 차트 있으면 제거
+//     if (window.flightChart) {
+//         window.flightChart.destroy();
+//     }
+
+//     window.flightChart = new Chart(ctx, {
+//         type: 'bar',
+//         data: {
+//             labels: Object.keys(prices),
+//             datasets: [{
+//                 label: '항공권 평균 가격',
+//                 data: Object.values(prices),
+//                 backgroundColor: ['#aad3df', '#85b3d1', '#5c95c2', '#3c78b3']
+//             }]
+//         },
+//         options: {
+//             scales: {
+//                 y: {
+//                     beginAtZero: false
+//                 }
+//             }
+//         }
+//     });
+// }
