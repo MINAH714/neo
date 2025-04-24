@@ -117,49 +117,54 @@
             </div>
         </div>
     </div>
-        <!-- 비행 정보 페이지 -->
-<!-- 이건 index.html의 flight 페이지 전체 코드예요 ✨ -->
-<div id="flight" class="page">
-  <div class="exchange-layout">
-      <!-- 왼쪽 패널 -->
-      <div class="left-panel flight">
-        <div class="left-origin" >
+    <!-- 비행 정보 페이지 -->
+    <!-- 이건 index.html의 flight 페이지 전체 코드예요 ✨ -->
+    <div id="flight" class="page">
+      <div class="exchange-layout">
+          <!-- 왼쪽 패널 -->
+          <div class="left-panel flight">
+            <div class="left-origin" >
 
-          <i class="fa-solid fa-location-dot"></i>
-          <!-- 기존 문구에 id 추가 -->
-          <h2 id="flight-title" class="slide-in-left">나의 항공권 결제<br>지금이 괜찮을까요?</h2>
-          <button class="btn btn-flight" onclick="analyzeFlightPrices()">가격정보</button>
-        </div>
-          
-          <!-- 분석 결과 들어갈 부분 (처음에는 숨김 처리) -->
-          <div id="flight-analysis-result" style="display: none;">
-              <h3>🛫 항공권 분석 결과</h3>
-              <p id="flight-analysis-text"></p>
-              <canvas id="flight-chart" width="300" height="200" style="background-color: white;"></canvas>
+              <i class="fa-solid fa-location-dot"></i>
+              <!-- 기존 문구에 id 추가 -->
+              <h2 id="flight-title" class="slide-in-left">나의 항공권 결제<br>지금이 괜찮을까요?</h2>
+              <button class="btn btn-flight" onclick="analyzeFlightPrices()">가격정보</button>
+            </div>
+              
+               <!-- 로딩 애니메이션 -->
+               <div id="loading" style="display: none;">
+                <img src="powergirl.gif" alt="loading...">
+            </div>
+
+              <!-- 분석 결과 들어갈 부분 (처음에는 숨김 처리) -->
+              <div id="flight-analysis-result" style="display: none;">
+                  <h3>🛫 항공권 분석 결과</h3>
+                  <p id="flight-analysis-text"></p>
+                  <canvas id="flight-chart" width="300" height="200" style="background-color: white;"></canvas>
+              </div>
+          </div>
+
+          <!-- 오른쪽 패널 -->
+          <div class="right-panel">
+              <h2>🛫항공권 가격🛫<br>지금이 적당해요💸</h2>
+
+              <!-- 사용자 입력 폼 -->
+              <form id="flightSearchForm">
+                  <!-- <label for="origin">출발지 코드:</label> -->
+                  <label for="origin">출발지:</label>
+                  <input type="text" id="origin" name="origin" value="ICN" readonly>
+                  <!-- <input type="text" id="origin" name="origin" required placeholder="예: ICN"> -->
+                  <label for="destination">도착지:</label>
+                  <input type="text" id="destination" name="destination" required placeholder="예: LAX">
+                  <!-- <label for="date">출발일:</label>
+                  <input type="text" id="date" name="date" required placeholder="예: 2025-06-18"> -->
+                  <label for="date">출발일:</label>
+                  <input type="date" id="date" name="date" required>
+                  <button type="submit" class="btn btn-search">검색</button>
+              </form>
           </div>
       </div>
-
-      <!-- 오른쪽 패널 -->
-      <div class="right-panel">
-          <h2>🛫항공권 가격🛫<br>지금이 적당해요💸</h2>
-
-          <!-- 사용자 입력 폼 -->
-          <form id="flightSearchForm">
-              <!-- <label for="origin">출발지 코드:</label> -->
-              <label for="origin">출발지:</label>
-              <input type="text" id="origin" name="origin" value="ICN" readonly>
-              <!-- <input type="text" id="origin" name="origin" required placeholder="예: ICN"> -->
-              <label for="destination">도착지:</label>
-              <input type="text" id="destination" name="destination" required placeholder="예: LAX">
-              <!-- <label for="date">출발일:</label>
-              <input type="text" id="date" name="date" required placeholder="예: 2025-06-18"> -->
-              <label for="date">출발일:</label>
-              <input type="date" id="date" name="date" required>
-              <button type="submit" class="btn btn-search">검색</button>
-          </form>
-      </div>
-  </div>
-</div>
+    </div>
 
         <!-- 축제 정보 페이지 -->
         <div id="holiday" class="page">

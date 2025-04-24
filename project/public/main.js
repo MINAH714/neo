@@ -5,6 +5,7 @@ function showPage(pageId) {
 
 document.getElementById("flightSearchForm").addEventListener("submit", async function (event) {
     event.preventDefault();
+    document.getElementById('loading').style.display = 'block';
     const originLeft =document.querySelector(".left-origin");
     originLeft.classList.add("noshow")
 
@@ -25,7 +26,14 @@ document.getElementById("flightSearchForm").addEventListener("submit", async fun
 
     // 그래프 그리기
     fetchFlightData(data);
-});
+    document.getElementById('loading').style.display = 'none';
+    });
+   
+
+
+
+
+
 
 function fetchFlightData(data) {
         if (window.flightChart) {
