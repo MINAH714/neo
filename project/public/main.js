@@ -6,6 +6,8 @@ function showPage(pageId) {
 document.getElementById("flightSearchForm").addEventListener("submit", async function (event) {
     event.preventDefault();
     document.getElementById('loading').style.display = 'block';
+
+    
     const originLeft =document.querySelector(".left-origin");
     originLeft.classList.add("noshow")
 
@@ -18,6 +20,17 @@ document.getElementById("flightSearchForm").addEventListener("submit", async fun
 
     const analysisText = data.analysis;
     const prices = data.prices;
+
+    // 분석 결과가 없으면 오류 메시지 표시
+    if (!analysisText || !data.simulated_past_prices || !data.real_price) {
+    // if (!analysisText || analysisText === "undefined" || !prices) {
+      // 오류 메시지 표시
+      document.getElementById("flight-title").style.display = "none";
+      document.getElementById("flight-analysis-result").style.display = "none";
+      document.getElementById("error-message").style.display = 'block';  // 오류 메시지 보이기
+      document.getElementById("loading").style.display = 'none'; // 로딩 애니메이션 숨기기
+      return;  // 분석 결과가 없으면 이 후 처리를 하지 않음
+    }
 
     // 왼쪽 문구 숨기기 & 분석 결과 보이기
     document.getElementById("flight-title").style.display = "none";
@@ -97,7 +110,56 @@ function fetchFlightData(data) {
     }
   }
   
+  let airportList = [];
+
+  fetch('itata_codes.csv')
+    .then(response => response.text())
+    .then(csv => {
+      const lines = csv.trim().split('\n');
+      lines.forEach(line => {
+        const [name, code] = line.split(',');
+        if (name && code) {
+          airportList.push({ name: name.trim(), code: code.trim() });
+        }
+      });
+    });
   
+  const destinationInput = document.getElementById('destination');
+  const suggestions = document.getElementById('suggestions');
+  
+  destinationInput.addEventListener('input', function () {
+    const inputValue = this.value.trim();
+    suggestions.innerHTML = '';
+    if (!inputValue) {
+      suggestions.style.display = 'none';
+      return;
+    }
+  
+    const filtered = airportList.filter(airport => airport.name.includes(inputValue));
+    if (filtered.length > 0) {
+      suggestions.style.display = 'block';
+      filtered.forEach(airport => {
+        const li = document.createElement('li');
+        li.textContent = `${airport.name} (${airport.code})`;
+        li.style.padding = '8px';
+        li.style.cursor = 'pointer';
+        li.addEventListener('click', () => {
+          destinationInput.value = airport.code; // 코드로 입력 변경
+          suggestions.style.display = 'none';
+        });
+        suggestions.appendChild(li);
+      });
+    } else {
+      suggestions.style.display = 'none';
+    }
+  });
+  
+  // 바깥 클릭 시 자동완성 닫기
+  document.addEventListener('click', function (e) {
+    if (!destinationInput.contains(e.target) && !suggestions.contains(e.target)) {
+      suggestions.style.display = 'none';
+    }
+  });
 
 // // ✨ Chart.js로 그래프 그리는 함수
 // function renderFlightChart(prices) {

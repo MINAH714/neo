@@ -138,17 +138,23 @@
           <!-- 왼쪽 패널 -->
           <div class="left-panel flight">
             <div class="left-origin" >
-
               <i class="fa-solid fa-location-dot"></i>
+
               <!-- 기존 문구에 id 추가 -->
               <h2 id="flight-title" class="slide-in-left">나의 항공권 결제<br>지금이 괜찮을까요?</h2>
               <button class="btn btn-flight" onclick="analyzeFlightPrices()">가격정보</button>
             </div>
-              
+
                <!-- 로딩 애니메이션 -->
                <div id="loading" style="display: none;">
                 <img src="powergirl.gif" alt="loading...">
             </div>
+
+              <!-- 오류 메시지와 gif (처음에는 숨김 처리) -->
+               <div id="error-message" style="display: none;">
+                  <p>데이터가 없떠... 다른나라 골라조😭</p>
+                  <img src="bubble.gif" alt="Error occurred">
+              </div>
 
               <!-- 분석 결과 들어갈 부분 (처음에는 숨김 처리) -->
               <div id="flight-analysis-result" style="display: none;">
@@ -165,15 +171,20 @@
               <!-- 사용자 입력 폼 -->
               <form id="flightSearchForm">
                   <!-- <label for="origin">출발지 코드:</label> -->
-                  <label for="origin">출발지:</label>
+                  <label for="origin">💙출발지:</label>
                   <input type="text" id="origin" name="origin" value="ICN" readonly>
                   <!-- <input type="text" id="origin" name="origin" required placeholder="예: ICN"> -->
-                  <label for="destination">도착지:</label>
-                  <input type="text" id="destination" name="destination" required placeholder="예: LAX">
+                  <!-- <label for="destination">도착지:</label>
+                  <input type="text" id="destination" name="destination" required placeholder="예: LAX"> -->
+                  <label for="destination">🧡도착지:</label>
+                  <div style="position: relative; width: 300px;">
+                  <input type="text" id="destination" name="destination" required placeholder="예: 나리타, LAX" autocomplete="off" style="width: 100%;">
+                  <ul id="suggestions" style="position: absolute; background: white; border: 1px solid #ccc; list-style: none; padding: 0; margin: 0; max-height: 200px; overflow-y: auto; z-index: 1000; width: 100%; display: none;"></ul>
+                  </div>
                   <!-- <label for="date">출발일:</label>
                   <input type="text" id="date" name="date" required placeholder="예: 2025-06-18"> -->
-                  <label for="date">출발일:</label>
-                  <input type="date" id="date" name="date" required>
+                  <label for="date">❤️출발일(내일부터 가능!):</label>
+                  <input type="date" id="date" name="date" required placeholder="예: 2025-06-18">
                   <button type="submit" class="btn btn-search">검색</button>
               </form>
           </div>

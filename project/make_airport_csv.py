@@ -11,7 +11,7 @@ print("columns")
 print(df.columns)
 print('-' * 50)
 
-filtered_df = df.iloc[:, [2, 7]]
+filtered_df = df.iloc[:, [1, 2]]
 
 print("추출된 데이터")
 print(filtered_df.head())
