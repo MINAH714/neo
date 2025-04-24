@@ -29,12 +29,6 @@ document.getElementById("flightSearchForm").addEventListener("submit", async fun
     document.getElementById('loading').style.display = 'none';
     });
    
-
-
-
-
-
-
 function fetchFlightData(data) {
         if (window.flightChart) {
         window.flightChart.destroy();
