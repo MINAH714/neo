@@ -37,6 +37,6 @@ for bar in bars:
 
 # 9. 그래프 저장
 plt.tight_layout()
-plt.savefig("출국자수_상위5_완전데이터만.png", dpi=400, bbox_inches='tight')
-print("✅ 그래프 저장 완료: 출국자수_상위5_완전데이터만.png")
+plt.savefig("Top10_people.png", dpi=400, bbox_inches='tight')
+print("png 저장완료")
 plt.show()

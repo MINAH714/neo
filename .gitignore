@@ -26,6 +26,7 @@ node/**/.serverless
 
 ## python
 .idea
+secret.json
 python/**/.venv
 python/**/__pycache__/
 **/secret.json
@@ -39,3 +40,6 @@ oracle/**/node_modules
 oracle/**/package-lock.json
 
 projectTest/*
+project/**/node_modules
+project/**/package-lock.json
+

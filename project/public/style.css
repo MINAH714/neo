@@ -1,0 +1,774 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Gmarket Sans', sans-serif;
+  }
+
+  .poetsen{
+    font-family: 'BMDOHYEON', sans-serif;
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    
+
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Gmarket Sans', sans-serif;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    
+    
+  }
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    flex-shrink: 0;
+    
+  }
+
+  .menu-icon, .search-icon {
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .fa-solid {
+    font-size: 30px;
+    padding: 15px;
+  }
+
+  .logo{
+    display: flex;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 35px;
+    margin-top: 20px;
+  }
+  .scrollable-title {
+    max-height: 150px; /* 원하는 높이로 조정 */
+    overflow-y: auto;
+    padding-right: 10px; /* 스크롤 안 겹치게 */
+    line-height: 1.5;
+    scrollbar-width: thin; /* Firefox */
+  }
+  
+  /* Webkit 브라우저용 (크롬 등) */
+  .scrollable-title::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollable-title::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+
+
+  .airplane {
+    font-size: 50px;
+  }
+
+/* Navbar 전체 */
+.navbar {
+  background-color: #ffffff;
+  padding: 18px 22px;
+  font-family: 'Pretendard', 'GmarketSans', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #ddd
+  
+}
+
+/* 내부 컨테이너 */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+
+.plane-icon {
+  color: #FF385C;
+}
+
+/* 메뉴 */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item > a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  padding: 8px 12px;
+  transition: color 0.2s ease;
+  border-radius: 8px;
+}
+
+.nav-item > a:hover {
+  color: #FF385C;
+  background-color: #f8f8f8;
+}
+  main.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  .page {
+    flex: 1;
+    display: none;
+    flex-direction: column;
+  }
+  .pagemain {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .page.active {
+  display: flex;
+  }
+
+  .highlight-box {
+  align-items: center;
+  background: #2daaff;
+  color: white;
+  padding: 60px 20px;
+  margin-top: auto;
+  border-radius: 60px 60px 0 0;
+  text-align: center;
+  height: 60rem;
+  width: 90%;
+  justify-content: flex-start;
+
+  }
+  .main {
+    background-color: #2daaff;
+    border-radius: 30px;
+}
+.btn-main{
+  color: #2daaff;
+}
+  .card {
+    margin: 10px;
+    margin-left: 70px;
+    width: 100%;
+    max-width: 540px;
+  }
+  .active {
+    display: flex;
+    
+  }
+  .boxtwo {
+    display: flex;
+  }
+
+  .highlight-box h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  }
+
+  .highlight-box h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+  }
+
+  .highlight-box button {
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: white;
+  color: #2daaff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  }
+
+  /* 환율 정보 페이지 레이아웃 */
+  .left-panel {
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      flex: 1;
+  }
+  .exchange {
+      background-color: #ff8686;
+      border-radius: 30px;
+  }
+  .flight{
+      background-color: #a59ed3;
+      border-radius: 30px;
+  }
+  .holiday{
+      background-color: #a4d6cc;
+      border-radius: 30px;
+  }
+  .left-panel h2 {
+      font-size: 60px;
+      margin-bottom: 20px;
+  }
+
+  .btn {
+      font-size: 30px;
+      background-color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+  }
+
+  .btn-exchange{
+      color: #ff8686;
+  }
+
+  .btn-flight{
+      color: #a59ed3;
+  }
+  .btn-holiday{
+      color: #a4d6cc;
+  }
+
+  .right-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .right-panel h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+  }
+
+  .chart {
+      max-width: 90%;
+      height: auto;
+      border: 1px solid #ccc;
+  }
+
+  @media (min-width: 768px) {
+      .exchange-layout {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      }
+
+      .left-panel, .right-panel {
+      width: 50%;
+      height: 100%;
+      }
+  }
+
+
+  form {
+    margin-top: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+
+  input, .btn-parties{
+    width: 70%;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
+  .btn-parties {
+    
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    background-color:#a4d6cc ;
+  }
+
+  .btn-parties:hover {
+    background-color: #ff8686;
+  }
+
+  #festivalsContainer {
+    margin-top: 30px;
+  }
+
+  .festival-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .date-fields {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    padding-right: 50px;
+  }
+  
+  .date-input {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+  }
+  
+  .date-input label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #333;
+  }
+  
+  .date-input input {
+    padding: 8px 10px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  
+  
+  .date-input {
+    flex: 1;
+  }
+
+  .sky {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+   
+  }
+  
+  .plane-icon {
+    position: absolute;
+    font-size: 30px;
+    color: #87ceeb;
+    top: 50px;
+    left: -100px;
+    animation: flyAcross 6s linear infinite;
+  }
+  
+  .flying-plane {
+    position: absolute;
+    top: 5px; /* 필요 시 조정 */
+    left: 120px; /* 떠남의 조건 근처에서 시작 */
+    animation: flyAcross 2.5s ease-in-out 1; /* 딱 한 번만 애니메이션 실행 */
+    font-size: 20px;
+    color: #ff8686;
+    z-index: 10;
+  }
+  
+  @keyframes flyAcross {
+    0% {
+      left: 310px;
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    100% {
+      left: 1000px; /* 비행기 가격 위치 근처 (조정 가능) */
+      transform: rotate(0deg);
+    }
+  }
+  
+  .slide-in-left {
+    opacity: 0;
+    transform: translateX(-100px); /* 왼쪽에서 시작 */
+    animation: slideInLeft 1.2s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+  
+  @keyframes slideInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .flying-plane {
+    animation: fly-across 3s ease-in-out infinite;
+    position: relative;
+  }
+  
+  /* 비행 애니메이션 */
+  @keyframes fly-across {
+    0% {
+      left: 150px;
+      transform: rotate(0deg);
+    }
+    50% {
+      left: 100px; /* 원하는 이동 거리 (조절 가능) */
+      transform: translateY(-5px) rotate(10deg);
+    }
+    100% {
+      left: 0;
+      transform: rotate(0deg);
+    }
+  }
+  
+
+.fa-solid1 {
+    font-size: 60px;
+}
+
+.card-body {
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.flatpickr-calendar {
+  transform: scale(0.75);
+  transform-origin: top left;
+  font-size: 12px;
+}
+
+  /* 날짜 선택된 부분 하이라이트 */
+  .flatpickr-day.selected,
+  .flatpickr-day.startRange,
+  .flatpickr-day.endRange,
+  .flatpickr-day:hover {
+    background-color: #a4d6cc;
+    color: white;
+    border-radius: 50%;
+  }
+
+  /* 오늘 날짜 스타일 */
+  .flatpickr-day.today {
+    border: 1px solid #a4d6cc;
+    font-weight: bold;
+  }
+  input#start_date,
+  input#end_date {
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .flatpickr-month {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #a4d6cc;
+  }
+
+  /* 화살표 버튼 */
+  .flatpickr-prev-month, .flatpickr-next-month {
+    color: #a4d6cc;
+  }
+
+  /* 요일 스타일 */
+  .flatpickr-weekday {
+    color: #a4d6cc;
+    font-weight: bold;
+  }
+
+  /* 전체 폰트 적용 */
+  .flatpickr-calendar {
+    font-size: 14px;
+  }
+
+
+  .festival-box {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    height: 100vh;
+  }
+  
+  .festival-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .festival-box input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  .festival-box .date-fields {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .date-fields .date-input {
+    flex: 1;
+  }
+
+  .holiday-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    height: 100vh;
+  }
+  
+  .holiday-box {
+    display: flex;
+    flex-direction: row;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    gap: 40px;
+    max-width: 1500px;
+    width: 100%;
+    height: 100vh;
+
+
+  }
+  
+  .holiday-box .left-panel,
+  .holiday-box .right-panel {
+    flex: 1;
+  }
+  
+  .holiday-box h2 {
+    font-family: 'GmarketSans', sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  
+  button.btn-parties {
+    background-color: #a4d6cc;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  button.btn-parties:hover {
+    background-color: #e02e4f;
+  }
+
+  .right-panel .form-card {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    padding: 30px 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .form-card h2 {
+    font-family: 'GmarketSans', sans-serif;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .form-card label {
+    font-size: 16px;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  
+  .form-card input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+  
+  .date-fields {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .date-input {
+    flex: 1;
+  }
+  
+  .btn-parties {
+    background-color: #FF385C;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .btn-parties:hover {
+    background-color: #e02e4f;
+  }
+  
+  .badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    display: inline-block;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* 각각의 색상 */
+  .badge-pink {
+    background-color: #ff8686;
+  }
+  
+  .badge-purple {
+    background-color: #a59ed3;
+  }
+  
+  .badge-mint {
+    background-color: #a4d6cc;
+  }
+  
+  /* 호버 효과 */
+  .badge:hover {
+    opacity: 0.85;
+    cursor: pointer;
+  }
+  
+
+  .noshow{
+    display: none;
+  }
+
+  .btn-search{
+    margin-top: 10px;
+    background-color: #a59ed3;
+    color:white
+  }
+
+  .btn-search:hover{
+    color: #a59ed3;
+    border:2px solid #a59ed3;  
+  }
+
+  .right-panel h2{
+    margin-top: 30px;
+    font-size: 25px;
+  }
+
+  .airport-cards-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  .airport-card {
+    width: 150px;
+    height: 180px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    background-color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .airport-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .airport-card .card-text {
+    padding: 0.5rem;
+  }
+  
+  .airport-card h5 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .airport-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .airport-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+  
+  /* 페이드 인 애니메이션 */
+  .animate-card {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
