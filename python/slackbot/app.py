@@ -5,7 +5,7 @@ from fastapi.responses import PlainTextResponse
 import json
 import os.path
 
-app = FastAPI()
+app = FastAPI ( )
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.relpath("./")))
 secret_file = os.path.join(BASE_DIR, '../../secret.json')
@@ -55,4 +55,4 @@ async def sendHook(text:str):
     cmd += "'{" + '"text"' + ":" + '"' + text + '"' + "}' "
     cmd += webhookToken    
     os.system(cmd)
-    return cmd
+    return cmd 

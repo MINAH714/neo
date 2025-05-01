@@ -51,7 +51,7 @@ class SlackAPI:
 
 BotToken = get_secret("slack_BotOAuthToken")
 slack = SlackAPI(BotToken)
-channel_name = "프로젝트"
+channel_name = "project"
 query = "slackbot test"
 text = "Hello, I'm Slack Bot.."
 
