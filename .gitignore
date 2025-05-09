@@ -43,3 +43,7 @@ projectTest/*
 project/**/node_modules
 project/**/package-lock.json
 
+## docker
+docker/mysql/mysql*
+docker/mongodb/mongo*
+
