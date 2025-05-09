@@ -1,3 +1,5 @@
+use testdb;
+
 CREATE TABLE `st_grade` (
   `ST_ID` int(11) NOT NULL,
   `Linux` int(11) DEFAULT NULL,
