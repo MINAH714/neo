@@ -32,4 +32,4 @@ spec:
       protocol: TCP
   type: LoadBalancer
   externalIPs:
-    - 192.168.1.203
+    - 13.238.128.251 
