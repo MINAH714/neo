@@ -47,3 +47,4 @@ project/**/package-lock.json
 docker/mysql/mysql*
 docker/mongodb/mongo*
 
+nestjs
