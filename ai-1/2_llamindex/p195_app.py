@@ -1,6 +1,6 @@
 import os
 from llama_index import SimpleDirectoryReader, GPTVectorStoreIndex, ServiceContext, LLMPredictor, StorageContext, LangchainEmbedding
-from llama_index.vector_stores.faiss import FaissVectorStore
+from llama_inde.vector_stores.faiss import FaissVectorStore
 from langchain.chat_models import ChatOpenAI
 from langchain.embeddings import HuggingFaceEmbeddings
 import faiss
@@ -13,11 +13,11 @@ embed_model = LangchainEmbedding(HuggingFaceEmbeddings(
     model_name="all-MiniLM-L6-v2",
 ))
 print('-' * 50)
-print("Embedding model initialized successfully")
+print('Embedding model initialized successfully')
 
 llm_predictor = LLMPredictor(llm=ChatOpenAI(
     temperature=0, 
-    model_name="gpt-3.5-turbo"
+    model_name="gpt-3.5-turbo"  # 모델명
 ))
 print('-' * 50)
 print('LLM Predictor initialized successfully')
@@ -30,7 +30,7 @@ service_context = ServiceContext.from_defaults(
     embed_model=embed_model,
 )
 print('-' * 50)
-print("Faiss vector store initialized successfully")
+print("Faiss Index and Vector Store initialized successfully")
 
 index = GPTVectorStoreIndex.from_documents(
     documents, 
@@ -42,11 +42,11 @@ print("Index created successfully")
 
 query_engine = index.as_query_engine()
 print('-' * 50)
-print("Query engine created successfully")
+print("Query Engine initialized successfully")
 
 print('-' * 50)
-query = '미코의 소꿉친구 이름은?'
+query = '미코의 소꼽친구 이름은?'
 response = query_engine.query(query)
-print(f"Query: {query}", end="\n")
+print(f"Query: {query}", end="\n\n")
 print(f"Response: {response}", end="\n")
 print('-' * 50)
