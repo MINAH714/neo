@@ -12,11 +12,11 @@ print('-' * 50)
 print("Embedding Model initialized successfully")
 
 llm_predictor = LLMPredictor(llm=ChatOpenAI(
-    temperature=0, 
+    temperature=0,
     model_name="gpt-3.5-turbo"
 ))
 print('-' * 50)
-print("LLM Predictor initialized successfully")
+print("LLM Preditor initialized successfully")
 
 service_context = ServiceContext.from_defaults(
     llm_predictor=llm_predictor,
@@ -26,7 +26,7 @@ print('-' * 50)
 print("Service context initialized successfully")
 
 index = GPTVectorStoreIndex.from_documents(
-    documents, 
+    documents,
     service_context=service_context,
 )
 print('-' * 50)
@@ -35,7 +35,7 @@ print("Index initialized successfully")
 query_engine = index.as_query_engine()
 print("Query engine initialized successfully")
 
-query = "미코의 소꼽친구 이름은?"
+query = "미코의 소꿉친구 이름은?"
 response = query_engine.query(query)
 print('-' * 50)
 print(f'query : {query}', end='\n\n')
