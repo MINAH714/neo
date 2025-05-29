@@ -3,9 +3,9 @@ from pathlib import Path
 
 def get_youtube_video_info(video_url):
     ydl_opts = {
-        # 'cookies' :'./cookies.txt',
+        'cookies' :'./data/cookies.txt',
         'noplaylist': True,
-        'qu=et': True,
+        'quiet': True,
         'no_warnings': True
     }
 
@@ -13,7 +13,7 @@ def get_youtube_video_info(video_url):
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             video_info = ydl.extract_info(video_url, download=False)
             return {
-                'id' : video_info.get['id'],
+                'id' : video_info.get('id'),
                 'title' : video_info.get('title'),
                 'upload_date': video_info.get('upload_date'),
                 'channel' : video_info.get('channel'),
@@ -28,21 +28,27 @@ def remove_invalid_char_for_filename(input_str):
     for char in invalid_characters:
         input_str = input_str.replace(char, '_')
 
-    while input_str.endwith('.'):
+    while input_str.endswith('.'):
         input_str = input_str[:-1]
 
-    return inpu_str
+    return input_str
 
 def download_youtube_video(video_url, folder, filename=None):
-    _, title, _, _ = get_youtube_video_info(video_url)
-    filename_no_exit = remove_invalid_char_for_filename(title)
+    video_info = get_youtube_video_info(video_url)
 
-    if filename == None:
-        download_file = f'{filename_no_exit}.mp4'
+    if isinstance(video_info, str) and video_info.startswith("Error"):
+        print(video_info)
+        return None, None
+
+    title = video_info['title']
+    filename_no_ext = remove_invalid_char_for_filename(title)
+
+    if filename is None:
+        download_file = f"{filename_no_ext}.mp4"
     else:
         download_file = filename
-    
-    outumpl_str = f'{folder}/{download_file}'
+
+    outtmpl_str = f'{folder}/{download_file}'
 
     download_path = Path(outtmpl_str)
 
@@ -57,12 +63,13 @@ def download_youtube_video(video_url, folder, filename=None):
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         video_info = ydl.extract_info(video_url, download=True)
-        title = video_info.get('title')
+        title = video_info.get('title', None)
+
     return title, download_path
 
 video_url = 'https://www.youtube.com/watch?v=pSJrML-TTmI'
 download_folder = './data'
-title, download_path = download_youtube_video(video_url, download_folder)
+video_title, download_path = download_youtube_video(video_url, download_folder)
 
-print("- 유튜브 제목 : ", title)
-print("- 다운로드한 파일명", download_path.name)
+print("- 유튜브 제목 : ", video_title)
+print("- 다운로드한 파일명 : ", download_path.name)

@@ -2,7 +2,7 @@ import yt_dlp
 
 def get_youtube_video_info(video_url):
     ydl_opts = {
-        # 'cookies' :'./cookies.txt',
+        'cookies' :'./data/cookies.txt',
         'noplaylist': True,
         'quiet': True,
         'no_warnings': True
@@ -12,7 +12,7 @@ def get_youtube_video_info(video_url):
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             video_info = ydl.extract_info(video_url, download=False)
             return {
-                'id' : video_info.get['id'],
+                'id' : video_info.get('id'),
                 'title' : video_info.get('title'),
                 'upload_date': video_info.get('upload_date'),
                 'channel' : video_info.get('channel'),
