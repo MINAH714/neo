@@ -57,3 +57,5 @@ nestjs
 ai-1/**/*.jsonl
 ai-1/**/*.csv
 ai-1/**/*.png
+
+**/project2/*
