@@ -67,3 +67,8 @@ ai-1/**/*.csv
 ai-1/**/*.png
 
 **/project2/*
+
+**/node/dbConfig.js
+**/node_modules
+**/package-lock.json
+**/package.json
