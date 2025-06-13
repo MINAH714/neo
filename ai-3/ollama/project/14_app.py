@@ -1,6 +1,6 @@
 import ollama
 import json
-import random
+import random  
 from datetime import datetime, timedelta
 
 def clean_json_response(raw):
